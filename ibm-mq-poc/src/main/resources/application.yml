@@ -1,0 +1,12 @@
+ibm:
+  mq:
+    qm1:
+      queueManager: QM1
+      channel: DEV.APP.SVRCONN
+      conn-name: localhost(1414)
+    qm2:
+      queueManager: QM2
+      channel: DEV.APP.SVRCONN
+      conn-name: localhost(1415)
+
+
