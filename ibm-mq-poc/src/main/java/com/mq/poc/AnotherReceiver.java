@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class AnotherReceiver {
 
-    //@JmsListener(destination = "DEV.QUEUE.2",containerFactory = "jmsListenerContainerFactoryQM1")
+    @JmsListener(destination = "DEV.QUEUE.1")
     public void receiveMessage(String message) {
-        System.out.println("DEV.QUEUE.2 received ~" + message + "~");
+        System.out.println("DEV.QUEUE.1 received ~" + message + "~ from default CF");
     }
 }

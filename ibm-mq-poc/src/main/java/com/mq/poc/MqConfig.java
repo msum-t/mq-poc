@@ -18,39 +18,15 @@ import org.springframework.jms.core.JmsTemplate;
 @Configuration
 public class MqConfig {
 
-    @ConfigurationProperties(prefix = "ibm.mq.qm1")
-    @Bean
-    public MQConfigurationProperties mqConfigurationPropertieQM1() {
-        return new MQConfigurationProperties();
-    }
-
-    @ConfigurationProperties(prefix = "ibm.mq.qm2")
-    @Bean
-    public MQConfigurationProperties mqConfigurationPropertieQM2() {
-        return new MQConfigurationProperties();
-    }
-
    @Bean
     public ConnectionFactory qm1ConnectionFactory() throws JMSException {
-
-        var props = mqConfigurationPropertieQM1();
-       System.out.println(props.getQueueManager());
-           MQConnectionFactory factory = new MQConnectionFactory();
-           factory.setQueueManager(props.getQueueManager());
-           factory.setConnectionNameList(props.getConnName());
-           factory.setChannel(props.getChannel());
-           factory.setTransportType(WMQConstants.WMQ_CM_CLIENT);
-        return factory;
-    }
-
-    @Bean
-    public ConnectionFactory qm2ConnectionFactory() throws Exception {
-        var props = mqConfigurationPropertieQM2();
-        System.out.println(props.getQueueManager());
         MQConnectionFactory factory = new MQConnectionFactory();
-        factory.setQueueManager(props.getQueueManager());
-        factory.setConnectionNameList(props.getConnName());
-        factory.setChannel(props.getChannel());
+        factory.setQueueManager("QM2");
+        factory.setHostName("localhost");
+        factory.setPort(1415);
+        factory.setChannel("DEV.ADMIN.SVRCONN");
+        factory.setStringProperty(WMQConstants.USERID,"admin");
+        factory.setStringProperty(WMQConstants.PASSWORD,"passw0rd");
         factory.setTransportType(WMQConstants.WMQ_CM_CLIENT);
         return factory;
     }
@@ -61,21 +37,11 @@ public class MqConfig {
         return new JmsTemplate(qm1ConnectionFactory());
     }
 
-    @Bean("jmsTemplateQM2")
-    public JmsTemplate jmsTemplateQM2() throws Exception {
-        return new JmsTemplate(qm2ConnectionFactory());
-    }
-
-    @Bean("jmsListenerContainerFactoryQM1")
-    public DefaultJmsListenerContainerFactory jmsListenerContainerFactoryQM1() throws Exception {
+    @Bean("jmsListenerQM1")
+    public DefaultJmsListenerContainerFactory jmsListenerContainerFactory() throws Exception {
         var factory=new DefaultJmsListenerContainerFactory();
         factory.setConnectionFactory(qm1ConnectionFactory());
-        return factory;
+       return factory ;
     }
-    @Bean("jmsListenerContainerFactoryQM2")
-    public DefaultJmsListenerContainerFactory jmsListenerContainerFactoryQM2() throws Exception {
-        var factory=new DefaultJmsListenerContainerFactory();
-        factory.setConnectionFactory(qm2ConnectionFactory());
-        return factory;
-    }
+
 }

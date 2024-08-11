@@ -25,8 +25,10 @@ public class IbmMqPocApplication {
 
 	@Autowired
 	@Qualifier("jmsTemplateQM1")
-	private JmsTemplate jmsTemplate;
+	private JmsTemplate jmsTemplateQM1;
 
+	@Autowired
+	private JmsTemplate jmsTemplate;
 	public static void main(String[] args) {
 		SpringApplication.run(IbmMqPocApplication.class, args);
 	}
@@ -36,7 +38,8 @@ public class IbmMqPocApplication {
 	public void sendMsg(){
 		jmsTemplate.convertAndSend("DEV.QUEUE.1","Hi from queue 1");
 		System.out.println("sent");
-		jmsTemplate.convertAndSend("DEV.QUEUE.2","Hi from queue 2");
+		jmsTemplateQM1.convertAndSend("DEV.QUEUE.2","Hi from queue 2");
+		System.out.println("sent");
 		//return "msg sent";
 
 	}
