@@ -4,7 +4,7 @@ import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
 /**
- * @author bjzquan
+ * @author sumit
  */
 @Component
 public class AnotherReceiver {
