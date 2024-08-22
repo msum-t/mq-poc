@@ -39,6 +39,16 @@
 			<artifactId>jackson-databind</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.apache.camel.springboot</groupId>
+			<artifactId>camel-jms-starter</artifactId>
+			<version>4.7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel.springboot</groupId>
+			<artifactId>camel-spring-boot-starter</artifactId>
+			<version>4.7.0</version>
+		</dependency>
+		<dependency>
 			<groupId>com.ibm.mq</groupId>
 			<artifactId>com.ibm.mq.jakarta.client</artifactId>
 			<version>9.4.0.0</version>

@@ -10,9 +10,10 @@ ibm:
 #      conn-name: localhost(1415)
     queueManager: QM1
     channel: DEV.ADMIN.SVRCONN
-    conn-name: localhost(1414)
     user: admin
     password: passw0rd
+    conn-name: localhost(1414)
+
 
 
 

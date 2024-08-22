@@ -13,9 +13,9 @@ import java.util.Map;
 @Component
 public class Receiver {
 
-    @JmsListener(destination = "DEV.QUEUE.2",containerFactory = "jmsListenerQM1")
+    @JmsListener(destination = "DEV.QUEUE.1",containerFactory = "jmsListenerQM2")
     public void receiveMessage(String message) {
-        System.out.println("DEV.QUEUE.2 received ~" + message + "~ from custom CF");
+        System.out.println("DEV.QUEUE.1 received ~" + message + "~ from QM2 CF");
     }
 }
 
